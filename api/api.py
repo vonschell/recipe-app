@@ -33,9 +33,9 @@ class Recipe(db.Model):
         )
 
 # Initialize the database
-with app.app_context():
-    db.create_all()
-    db.session.commit()
+# with app.app_context():
+#     db.create_all()
+#     db.session.commit()
     
 @app.route('/api/recipes', methods=['GET'])
 def get_all_recipes():     
