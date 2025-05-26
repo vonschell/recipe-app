@@ -1,6 +1,6 @@
 import React from "react";
 
-const RecipeExcerpt = ({ recipe }) => {
+const RecipeExcerpt = ({ recipe, handleSelelctRecipe }) => {
     return (
         <article className="recipe-card">
             <figure>
