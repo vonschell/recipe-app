@@ -53,6 +53,18 @@ def get_all_recipes():
         })     
     return jsonify(recipe_list)
 
+@app.route('/api/recipes', methods=['POST'])
+def add_recipe():
+    data = request.get_json()
+    new_recipe = Recipe(
+        title=data['title'],
+        ingredients=data['ingredients'],
+        instructions=data['instructions'],
+        servings=data['servings'],
+        description=data['description'],
+        image_url=data['image_url']
+    )
+
 # Run the application
 if __name__ == '__main__':
     app.run(debug=True)
