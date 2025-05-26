@@ -36,26 +36,32 @@ class Recipe(db.Model):
 # with app.app_context():
 #     db.create_all()
 #     db.session.commit()
-    
+
 @app.route('/api/recipes', methods=['GET'])
-def get_all_recipes():     
-    recipes = Recipe.query.all()     
-    recipe_list = []     
-    for recipe in recipes:         
-        recipe_list.append({             
-            'id': recipe.id,             
-            'title': recipe.title,             
-            'ingredients': recipe.ingredients,             
-            'instructions': recipe.instructions,             
-            'description': recipe.description,             
-            'image_url': recipe.image_url,             
-            'servings': recipe.servings         
-        })     
+def get_all_recipes():
+    recipes = Recipe.query.all()
+    recipe_list = []
+    for recipe in recipes:
+        recipe_list.append({
+            'id': recipe.id,
+            'title': recipe.title,
+            'ingredients': recipe.ingredients,
+            'instructions': recipe.instructions,
+            'description': recipe.description,
+            'image_url': recipe.image_url,
+            'servings': recipe.servings
+        })
     return jsonify(recipe_list)
 
 @app.route('/api/recipes', methods=['POST'])
 def add_recipe():
     data = request.get_json()
+
+    required_fields = ['title', 'ingredients', 'instructions', 'servings', 'description', 'image_url']
+    for field in required_fields:
+        if field not in data or data[field] == "":
+            return jsonify({'error': f"Missing required field: '{field}'"}), 400
+
     new_recipe = Recipe(
         title=data['title'],
         ingredients=data['ingredients'],
@@ -64,10 +70,10 @@ def add_recipe():
         description=data['description'],
         image_url=data['image_url']
     )
-    
+
     db.session.add(new_recipe)
     db.session.commit()
-    
+
     new_recipe_data = {
         'id': new_recipe.id,
         'title': new_recipe.title,
