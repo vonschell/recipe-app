@@ -26,3 +26,5 @@ yarn-error.log*
 # Flask stuffs
 venv
 __pycache__
+
+api/instances/recipes.db
