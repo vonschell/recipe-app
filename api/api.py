@@ -27,10 +27,7 @@ class Recipe(db.Model):
     servings = db.Column(db.Integer, nullable=False)
 
     def __repr__(self):
-        return (
-            f"Recipe(id={self.id}, title='{self.title}', "
-            f"description='{self.description}', servings={self.servings})"
-        )
+        return f"Recipe(id={self.id}, title='{self.title}', description='{self.description}', servings={self.servings})"
 
 # Initialize the database
 # with app.app_context():
@@ -53,10 +50,12 @@ def get_all_recipes():
         })
     return jsonify(recipe_list)
 
+# Route to add a new recipe
 @app.route('/api/recipes', methods=['POST'])
 def add_recipe():
     data = request.get_json()
 
+    # Validate the incoming JSON data
     required_fields = ['title', 'ingredients', 'instructions', 'servings', 'description', 'image_url']
     for field in required_fields:
         if field not in data or data[field] == "":
@@ -74,6 +73,7 @@ def add_recipe():
     db.session.add(new_recipe)
     db.session.commit()
 
+    # Serialize the new recipe data
     new_recipe_data = {
         'id': new_recipe.id,
         'title': new_recipe.title,
