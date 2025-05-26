@@ -35,3 +35,5 @@ const RecipeFull = () => {
 </div>
     )
 }
+
+export default RecipeFull;
