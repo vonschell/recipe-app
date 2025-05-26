@@ -8,7 +8,7 @@ const RecipeExcerpt = ({ recipe, handleSelelctRecipe }) => {
                 </figure>
                 <h2>{recipe.title}</h2>
                     <p className='flex-spacing'>Description: {recipe.description}</p>
-                        <button>View</button>
+                        <button onClick={() => handleSelelctRecipe(recipe)}>View</button>
         </article>
     );
 };
