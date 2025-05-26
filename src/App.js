@@ -36,9 +36,13 @@ const handleUnselectRecipe = () => {
 };
 
   return (
-    <div className='recipe-app'>
+    <div className="recipe-app">
       <Header />
-      <div className='recipe-list'>
+      <RecipeFull
+        selectedRecipe={selectedRecipe}
+        handleUnselectRecipe={handleUnselectRecipe}
+      />
+      <div className="recipe-list">
         {recipes.map((recipe) => (
           <RecipeExcerpt key={recipe.id} recipe={recipe} />
         ))}
