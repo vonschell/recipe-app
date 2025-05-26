@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import RecipeExcerpt from "./components/RecipeExcerpt";
 import RecipeFull from "./components/RecipeFull";
@@ -27,26 +26,33 @@ function App() {
     fetchAllRecipes();
   }, []);
 
-const handleSelectRecipe = (recipe) => {
-  setSelectedRecipe(recipe);
-};
+  const handleSelectRecipe = (recipe) => {
+    setSelectedRecipe(recipe);
+  };
 
-const handleUnselectRecipe = () => {
-  setSelectedRecipe(null);
-};
+  const handleUnselectRecipe = () => {
+    setSelectedRecipe(null);
+  };
 
   return (
     <div className="recipe-app">
       <Header />
-      <RecipeFull
-        selectedRecipe={selectedRecipe}
-        handleUnselectRecipe={handleUnselectRecipe}
-      />
-      <div className="recipe-list">
-        {recipes.map((recipe) => (
-          <RecipeExcerpt key={recipe.id} recipe={recipe} />
-        ))}
-      </div>
+      {selectedRecipe ? (
+        <RecipeFull
+          selectedRecipe={selectedRecipe}
+          handleUnselectRecipe={handleUnselectRecipe}
+        />
+      ) : (
+        <div className="recipe-list">
+          {recipes.map((recipe) => (
+            <RecipeExcerpt
+              key={recipe.id}
+              recipe={recipe}
+              handleSelelctRecipe={handleSelectRecipe}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
