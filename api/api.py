@@ -64,6 +64,9 @@ def add_recipe():
         description=data['description'],
         image_url=data['image_url']
     )
+    
+    db.session.add(new_recipe)
+    db.session.commit()
 
 # Run the application
 if __name__ == '__main__':
