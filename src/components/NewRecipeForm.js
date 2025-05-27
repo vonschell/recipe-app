@@ -29,7 +29,7 @@ const NewRecipeForm = ({ newRecipe, hideRecipeForm, onUpdateForm }) => {
                     <label>Instructions</label>
                     <textarea
                         name="instructions"
-                        value={new}
+                        value={newRecipe.instructions}
                         onChange={onUpdateForm}
                         required
                     />
