@@ -56,6 +56,13 @@ function App() {
   return (
     <div className="recipe-app">
       <Header />
+      {showNewRecipeForm && (
+        <NewRecipeForm
+          newRecipe={newRecipe}
+          setNewRecipe={setNewRecipe}
+          hideRecipeForm={hideRecipeForm}
+        />
+      )}
       {selectedRecipe ? (
         <RecipeFull
           selectedRecipe={selectedRecipe}
