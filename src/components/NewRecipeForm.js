@@ -1,11 +1,11 @@
 import React from "react";
 
-const NewRecipeForm = () => {
+const NewRecipeForm = ({ newRecipe, hideRecipeForm }) => {
     return (
         <div className="recipe-details">
             <div className="recipe-form">
                 <h2>New Recipe</h2>
-                <button className="cancel-button">Cancel</button>
+                <button className="cancel-button" onClick={hideRecipeForm}>Cancel</button>
 
                 <form>
                     <label>Title</label>
