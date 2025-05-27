@@ -48,8 +48,9 @@ function App() {
     setShowNewRecipeForm(false);
   };
 
-  const showNewRecipeForm = () => {
+  const showRecipeForm = () => {
     setShowNewRecipeForm(true);
+    setSelectedRecipe(null);
   };
 
   return (
