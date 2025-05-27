@@ -44,6 +44,14 @@ function App() {
     setSelectedRecipe(null);
   };
 
+  const hideRecipeForm = () => {
+    setShowNewRecipeForm(false);
+  };
+
+  const showNewRecipeForm = () => {
+    setShowNewRecipeForm(true);
+  };
+
   return (
     <div className="recipe-app">
       <Header />
