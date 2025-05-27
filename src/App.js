@@ -55,7 +55,8 @@ function App() {
 
   return (
     <div className="recipe-app">
-      <Header />
+      <Header showNewRecipeForm={showNewRecipeForm}/>
+      
       {showNewRecipeForm && (
         <NewRecipeForm
           newRecipe={newRecipe}
