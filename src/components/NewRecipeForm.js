@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewRecipeForm = ({ newRecipe, hideRecipeForm }) => {
+const NewRecipeForm = ({ newRecipe, hideRecipeForm, onUpdateForm }) => {
     return (
         <div className="recipe-details">
             <div className="recipe-form">
@@ -12,16 +12,16 @@ const NewRecipeForm = ({ newRecipe, hideRecipeForm }) => {
                     <input
                         type="text"
                         name="title"
-                        value=""
-                        onChange=""
+                        value={newRecipe.title}
+                        onChange={onUpdateForm}
                         required
                     />
 
                     <label>Ingredients</label>
                     <textarea
                         name="ingredients"
-                        value=""
-                        onChange=""
+                        value={newwRecipe.ingredients}
+                        onChange={onUpdateForm}
                         required
                         placeholder="Add ingredients separated by commas - i.e. Flour, sugar, almonds"
                     />
@@ -29,16 +29,16 @@ const NewRecipeForm = ({ newRecipe, hideRecipeForm }) => {
                     <label>Instructions</label>
                     <textarea
                         name="instructions"
-                        value=""
-                        onChange=""
+                        value={new}
+                        onChange={onUpdateForm}
                         required
                     />
 
                     <label>Description</label>
                     <textarea
                         name="description"
-                        value=""
-                        onChange=""
+                        value={newRecipe.description}
+                        onChange={onUpdateForm}
                         required
                     />
 
@@ -46,8 +46,8 @@ const NewRecipeForm = ({ newRecipe, hideRecipeForm }) => {
                     <input
                         type="text"
                         name="image_url"
-                        value=""
-                        onChange=""
+                        value={newRecipe.image_url}
+                        onChange={onUpdateForm}
                         required
                     />
 
@@ -55,8 +55,8 @@ const NewRecipeForm = ({ newRecipe, hideRecipeForm }) => {
                     <input
                         type="number"
                         name="servings"
-                        value=""
-                        onChange=""
+                        value={newRecipe.servings}
+                        onChange={onUpdateForm}
                         required
                     />
 
