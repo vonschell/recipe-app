@@ -20,7 +20,7 @@ const NewRecipeForm = ({ newRecipe, hideRecipeForm, onUpdateForm }) => {
                     <label>Ingredients</label>
                     <textarea
                         name="ingredients"
-                        value={newwRecipe.ingredients}
+                        value={newRecipe.ingredients}
                         onChange={onUpdateForm}
                         required
                         placeholder="Add ingredients separated by commas - i.e. Flour, sugar, almonds"
