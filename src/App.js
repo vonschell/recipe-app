@@ -53,6 +53,11 @@ function App() {
     setSelectedRecipe(null);
   };
 
+  const onUpdateForm = (e) => {
+    const { name, value } = e.target;
+    setNewRecipe({ ...newRecipe, [name]: value });
+  };
+
   return (
     <div className="recipe-app">
       <Header showRecipeForm={showRecipeForm}/>
