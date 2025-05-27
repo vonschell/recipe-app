@@ -67,6 +67,7 @@ function App() {
           newRecipe={newRecipe}
           setNewRecipe={setNewRecipe}
           hideRecipeForm={hideRecipeForm}
+          onUpdateForm={onUpdateForm}
         />
       )}
       {selectedRecipe ? (
