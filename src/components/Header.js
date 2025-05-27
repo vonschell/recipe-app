@@ -16,7 +16,7 @@ const Header = () => {
         </div>
       </div>
       <h1>My Favorite Recipes</h1>
-      <button className='new-recipe' onClick={() => 'New Recipe Form'}>Add New Recipe</button>
+      <button className='new-recipe' onClick={showReceiptForm}>Add New Recipe</button>
     </header>
   );
 };
