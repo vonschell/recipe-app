@@ -8,6 +8,7 @@ import "./App.css";
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [showNewRecipeForm, setShowNewRecipeForm] = useState(false);
   const [newRecipe, setNewRecipe] = useState({
     title: "",
     ingredients: "",
@@ -16,7 +17,6 @@ function App() {
     description: "",
     image_url: "https://images.pexels.com/photos/9986228/pexels-photo-9986228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" //default
   });
-  const [showNewRecipeForm, setShowNewRecipeForm] = useState(false);
 
   useEffect(() => {
     const fetchAllRecipes = async () => {
@@ -30,33 +30,10 @@ function App() {
         }
       } catch (e) {
         console.error("Error fetching recipes:", e);
-        console.log("An error occurred while fetching recipes. Please try again later.");
       }
     };
     fetchAllRecipes();
   }, []);
-
-  const handleSelectRecipe = (recipe) => {
-    setSelectedRecipe(recipe);
-  };
-
-  const handleUnselectRecipe = () => {
-    setSelectedRecipe(null);
-  };
-
-  const hideRecipeForm = () => {
-    setShowNewRecipeForm(false);
-  };
-
-  const showRecipeForm = () => {
-    setShowNewRecipeForm(true);
-    setSelectedRecipe(null);
-  };
-
-  const onUpdateForm = (e) => {
-    const { name, value } = e.target;
-    setNewRecipe({ ...newRecipe, [name]: value });
-  };
 
   const handleNewRecipe = async (e, newRecipe) => {
     e.preventDefault();
@@ -84,6 +61,35 @@ function App() {
           description: "",
           image_url: "https://images.pexels.com/photos/9986228/pexels-photo-9986228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         });
+      } else {
+        console.error("Failed to add recipe");
+      }
+    } catch (e) {
+      console.error("Error adding recipe:", e);
+    }
+  };  
+
+  const handleSelectRecipe = (recipe) => {
+    setSelectedRecipe(recipe);
+  };
+
+  const handleUnselectRecipe = () => {
+    setSelectedRecipe(null);
+  };
+
+  const hideRecipeForm = () => {
+    setShowNewRecipeForm(false);
+  };
+
+  const showRecipeForm = () => {
+    setShowNewRecipeForm(true);
+    setSelectedRecipe(null);
+  };
+
+  const onUpdateForm = (e) => {
+    const { name, value } = e.target;
+    setNewRecipe({ ...newRecipe, [name]: value });
+  };
 
   return (
     <div className="recipe-app">
@@ -92,17 +98,13 @@ function App() {
       {showNewRecipeForm && (
         <NewRecipeForm
           newRecipe={newRecipe}
-          setNewRecipe={setNewRecipe}
           hideRecipeForm={hideRecipeForm}
           onUpdateForm={onUpdateForm}
+          handleNewRecipe={handleNewRecipe} 
         />
       )}
-      {selectedRecipe ? (
-        <RecipeFull
-          selectedRecipe={selectedRecipe}
-          handleUnselectRecipe={handleUnselectRecipe}
-        />
-      ) : (
+      {selectedRecipe && <RecipeFull selectedRecipe={selectedRecipe} handleUnselectRecipe={handleUnselectRecipe} />}
+      {!selectedRecipe && !showNewRecipeForm && (
         <div className="recipe-list">
           {recipes.map((recipe) => (
             <RecipeExcerpt
