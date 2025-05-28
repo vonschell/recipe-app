@@ -2,7 +2,7 @@ import React from "react";
 import { X } from "react-feather";
 import EditRecipeForm from "./EditRecipeForm";
 
-const RecipeFull = ({ selectedRecipe, handleUnselectRecipe }) => {
+const RecipeFull = ({ selectedRecipe, handleUnselectRecipe, onUpdateForm, handleUpdateRecipe }) => {
   const [editing, setEditing] = React.useState(false);
 
   const handleCancel = () => {
