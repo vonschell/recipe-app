@@ -60,6 +60,14 @@ function App() {
 
   const handleNewRecipe = async (e, newRecipe) => {
     e.preventDefault();
+    try {
+      const response = await fetch("/api/recipes", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(newRecipe)
+      });
 
   return (
     <div className="recipe-app">
