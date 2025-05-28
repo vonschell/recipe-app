@@ -15,7 +15,8 @@ function App() {
     instructions: "",
     servings: 1, // conservative default
     description: "",
-    image_url: "https://images.pexels.com/photos/9986228/pexels-photo-9986228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" //default
+    image_url:
+      "https://images.pexels.com/photos/9986228/pexels-photo-9986228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", // default
   });
 
   useEffect(() => {
@@ -41,16 +42,16 @@ function App() {
       const response = await fetch("/api/recipes", {
         method: "POST",
         headers: {
-          "content-type": "application/json"
+          "content-type": "application/json",
         },
-        body: JSON.stringify(newRecipe)
-      }); 
+        body: JSON.stringify(newRecipe),
+      });
 
       if (response.ok) {
         const date = await response.json();
         setRecipes([...recipes, date.recipe]);
 
-        console.log("recipe added successfully");
+        console.log("Recipe added successfully");
 
         setShowNewRecipeForm(false);
         setNewRecipe({
@@ -59,7 +60,8 @@ function App() {
           instructions: "",
           servings: 1,
           description: "",
-          image_url: "https://images.pexels.com/photos/9986228/pexels-photo-9986228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          image_url:
+            "https://images.pexels.com/photos/9986228/pexels-photo-9986228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
         });
       } else {
         console.error("Failed to add recipe");
@@ -67,7 +69,7 @@ function App() {
     } catch (e) {
       console.error("Error adding recipe:", e);
     }
-  };  
+  };
 
   const handleSelectRecipe = (recipe) => {
     setSelectedRecipe(recipe);
@@ -86,24 +88,35 @@ function App() {
     setSelectedRecipe(null);
   };
 
-  const onUpdateForm = (e) => {
+  const onUpdateForm = (e, action = "new") => {
     const { name, value } = e.target;
-    setNewRecipe({ ...newRecipe, [name]: value });
+    if (action === "update") {
+      setSelectedRecipe({ ...selectedRecipe, [name]: value });
+    } else if (action === "new") {
+      setNewRecipe({ ...newRecipe, [name]: value });
+    }
   };
 
   return (
     <div className="recipe-app">
-      <Header showRecipeForm={showRecipeForm}/>
-      
+      <Header showRecipeForm={showRecipeForm} />
+
       {showNewRecipeForm && (
         <NewRecipeForm
           newRecipe={newRecipe}
           hideRecipeForm={hideRecipeForm}
           onUpdateForm={onUpdateForm}
-          handleNewRecipe={handleNewRecipe} 
+          handleNewRecipe={handleNewRecipe}
         />
       )}
-      {selectedRecipe && <RecipeFull selectedRecipe={selectedRecipe} handleUnselectRecipe={handleUnselectRecipe} />}
+      {selectedRecipe && (
+        <RecipeFull
+          selectedRecipe={selectedRecipe}
+          handleUnselectRecipe={handleUnselectRecipe}
+          handleUpdateRecipe={handleUnselectRecipe}
+          onUpdateForm={onUpdateForm}
+        />
+      )}
       {!selectedRecipe && !showNewRecipeForm && (
         <div className="recipe-list">
           {recipes.map((recipe) => (
