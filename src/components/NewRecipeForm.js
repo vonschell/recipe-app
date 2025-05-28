@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewRecipeForm = ({ newRecipe, hideRecipeForm, onUpdateForm }) => {
+const NewRecipeForm = ({ newRecipe, hideRecipeForm, onUpdateForm, handleNewRecipe }) => {
     return (
         <div className="recipe-details">
             <div className="recipe-form">
