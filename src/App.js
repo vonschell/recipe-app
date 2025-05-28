@@ -58,6 +58,9 @@ function App() {
     setNewRecipe({ ...newRecipe, [name]: value });
   };
 
+  const handleNewRecipe = async (e, newRecipe) => {
+    e.preventDefault();
+
   return (
     <div className="recipe-app">
       <Header showRecipeForm={showRecipeForm}/>
