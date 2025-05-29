@@ -111,7 +111,7 @@ function App() {
       } else {
         console.error("Failed to delete recipe", e);
       } 
-      catch (e) {
+    } catch (e) {
         console.error("Error deleting recipe:", e);
     }
     }
