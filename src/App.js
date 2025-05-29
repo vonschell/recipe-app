@@ -48,8 +48,8 @@ function App() {
       });
 
       if (response.ok) {
-        const date = await response.json();
-        setRecipes([...recipes, date.recipe]);
+        const data = await response.json();
+        setRecipes([...recipes, data.recipe]);
 
         console.log("Recipe added successfully");
 
@@ -69,6 +69,34 @@ function App() {
     } catch (e) {
       console.error("Error adding recipe:", e);
     }
+  };
+
+  const handleUpdateRecipe = async (e, selectedRecipe) => {
+    e.preventDefault();
+    const { id } = selectedRecipe;
+    try {
+      const response = await fetch(`/api/recipes/${id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(selectedRecipe),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setRecipes(
+          recipes.map((recipe) =>
+            recipe.id === id ? data.recipe : recipe
+          )
+        );
+        console.log("Recipe updated successfully");
+      } else {
+        console.error("Failed to update recipe");
+      }
+    } catch (error) {
+      console.error("Error updating recipe. Try again please.");
+    }
+    setSelectedRecipe(null);
   };
 
   const handleSelectRecipe = (recipe) => {
@@ -113,7 +141,7 @@ function App() {
         <RecipeFull
           selectedRecipe={selectedRecipe}
           handleUnselectRecipe={handleUnselectRecipe}
-          handleUpdateRecipe={handleUnselectRecipe}
+          handleUpdateRecipe={handleUpdateRecipe}
           onUpdateForm={onUpdateForm}
         />
       )}
@@ -123,7 +151,7 @@ function App() {
             <RecipeExcerpt
               key={recipe.id}
               recipe={recipe}
-              handleSelelctRecipe={handleSelectRecipe}
+              handleSelectRecipe={handleSelectRecipe}
             />
           ))}
         </div>
