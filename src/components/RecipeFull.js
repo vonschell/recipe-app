@@ -1,4 +1,4 @@
-import React { useState} from "react";
+import React, { useState } from "react";
 import { X } from "react-feather";
 import EditRecipeForm from "./EditRecipeForm";
 import ConfirmationModal from "./ConfirmationModal";
@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const RecipeFull = ({ selectedRecipe, handleUnselectRecipe, onUpdateForm, handleUpdateRecipe, handleDeleteRecipe }) => {
   const [editing, setEditing] = React.useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
 
   const handleCancel = () => {
     setEditing(false);
