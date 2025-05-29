@@ -3,7 +3,7 @@ import { X } from "react-feather";
 import EditRecipeForm from "./EditRecipeForm";
 import ConfirmationModal from "./ConfirmationModal";
 
-const RecipeFull = ({ selectedRecipe, handleUnselectRecipe, onUpdateForm, handleUpdateRecipe }) => {
+const RecipeFull = ({ selectedRecipe, handleUnselectRecipe, onUpdateForm, handleUpdateRecipe, handleDeleteRecipe }) => {
   const [editing, setEditing] = React.useState(false);
 
   const handleCancel = () => {
@@ -36,7 +36,7 @@ const RecipeFull = ({ selectedRecipe, handleUnselectRecipe, onUpdateForm, handle
               >
                 <X /> Close
               </button>
-              <button className="delete-button" onClick={() => handleDelete(recipeId)}>Delete</button>
+              <button className="delete-button" onClick={() => handleDelete(selectedRecipe.id)}>Delete</button>
             </div>
           </header>
 
