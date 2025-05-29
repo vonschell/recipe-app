@@ -36,7 +36,7 @@ const RecipeFull = ({ selectedRecipe, handleUnselectRecipe, onUpdateForm, handle
               >
                 <X /> Close
               </button>
-              <button className="delete-button" onClick={()}>Delete</button>
+              <button className="delete-button" onClick={() => handleDelete(recipeId)}>Delete</button>
             </div>
           </header>
 
