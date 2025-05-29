@@ -114,7 +114,6 @@ function App() {
     } catch (e) {
         console.error("Error deleting recipe:", e);
     }
-    }
   }; 
 
   const handleSelectRecipe = (recipe) => {
