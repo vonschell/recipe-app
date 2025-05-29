@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { X } from "react-feather";
 import EditRecipeForm from "./EditRecipeForm";
 import ConfirmationModal from "./ConfirmationModal";
-import { useState } from "react";
 
 const RecipeFull = ({ selectedRecipe, handleUnselectRecipe, onUpdateForm, handleUpdateRecipe, handleDeleteRecipe }) => {
   const [editing, setEditing] = React.useState(false);
@@ -11,6 +10,20 @@ const RecipeFull = ({ selectedRecipe, handleUnselectRecipe, onUpdateForm, handle
   const handleCancel = () => {
     setEditing(false);
   };
+  if (showConfirmationModal) {
+    return (
+      <div className="recipe-details">
+        <ConfirmationModal
+          message="Are you sure you want to delete this recipe?"
+          onCancel={() => setShowConfirmationModal(false)}
+          onConfirm={() => {
+            handleDeleteRecipe(selectedRecipe.id);
+            setShowConfirmationModal(false);
+          }}
+        />
+      </div>    
+    );
+  }
 
   return (
     <div className="recipe-details">
