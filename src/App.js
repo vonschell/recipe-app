@@ -113,6 +113,7 @@ function App() {
       } 
     } catch (e) {
         console.error("Error deleting recipe:", e);
+        console.error("Failed to update recipe. Please try again.");
     }
   }; 
 
