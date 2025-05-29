@@ -99,6 +99,24 @@ function App() {
     setSelectedRecipe(null);
   };
 
+  const handleDeleteRecipe = async (recipeId) => {
+    try {
+      const response = await fetch(`/api/recipes/${recipeId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setRecipes(recipes.filter((recipe) => recipe.id !== recipeId));
+        setSelectedRecipe(null);
+        console.log("Recipe deleted successfully");
+      } else {
+        console.error("Failed to delete recipe", e);
+      } 
+      catch (e) {
+        console.error("Error deleting recipe:", e);
+    }
+    }
+  }; 
+
   const handleSelectRecipe = (recipe) => {
     setSelectedRecipe(recipe);
   };
@@ -142,6 +160,7 @@ function App() {
           selectedRecipe={selectedRecipe}
           handleUnselectRecipe={handleUnselectRecipe}
           handleUpdateRecipe={handleUpdateRecipe}
+          handleDeleteRecipe={handleDeleteRecipe}
           onUpdateForm={onUpdateForm}
         />
       )}
