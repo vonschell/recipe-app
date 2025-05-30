@@ -158,7 +158,7 @@ function App() {
     }
   };
 
-  const displayRecipes = searchTerm ? handleSearch() : recipes;
+  const displayedRecipes = searchTerm ? handleSearch() : recipes;
 
   return (
     <div className="recipe-app">
