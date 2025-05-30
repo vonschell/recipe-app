@@ -11,7 +11,7 @@ const Header = ({ showRecipeForm }) => {
           <label className='visually-hidden' htmlFor='search'>
             Search
           </label>
-          <input type='text' placeholder='Search' id='search' />
+          <input type='text' placeholder='Search' id='search' value={searchTerm} onChange={(e) => updateSearchTerm(e.target.value)}/>
           <Search />
         </div>
       </div>
