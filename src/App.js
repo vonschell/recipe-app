@@ -19,8 +19,7 @@ function App() {
     instructions: "",
     servings: 1, // conservative default
     description: "",
-    image_url:
-      "https://images.pexels.com/photos/9986228/pexels-photo-9986228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", // default
+    image_url: "", 
   });
 
   useEffect(() => {
@@ -64,8 +63,7 @@ function App() {
           instructions: "",
           servings: 1,
           description: "",
-          image_url:
-            "https://images.pexels.com/photos/9986228/pexels-photo-9986228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          image_url: "",
         });
       } else {
         displayToast("Failed to add recipe", "error");
