@@ -44,6 +44,7 @@ ol[role="list"] {
 body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  background: linear-gradient(to bottom right, #ffffff, #fffaf6);
 }
 
 img,
@@ -99,7 +100,7 @@ figure {
 button {
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 40px;
   font-family: inherit;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -118,14 +119,19 @@ header svg {
 header .logo-search svg:hover {
   transform: rotate(25deg);
 }
+
 header h1 {
   font-size: 2.5rem;
   font-family: var(--headings-font-family);
+  border-bottom: 3px solid var(--accent-color);
+  display: inline-block;
+  padding-bottom: 0.5rem;
 }
 
 header .logo-search {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-bottom: 5rem;
 }
 
@@ -181,10 +187,9 @@ header .new-recipe:hover {
 /* All Recipe view */
 
 .recipe-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4rem;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
   margin: 2rem auto;
 }
 
@@ -195,13 +200,21 @@ header .new-recipe:hover {
   padding: 1rem 2rem 3rem;
   background-color: #fff;
   border: 1px solid var(--border-color);
-  border-radius: 5px;
+  border-radius: 12px;
   box-shadow: var(--box-shadow);
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+  box-shadow: 0px 6px 30px 0px rgba(0, 0, 0, 0.12);
 }
 
 .recipe-card h2 {
   font-size: 1.875rem;
   margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--dark-gray);
 }
 
 .recipe-card button {
@@ -224,6 +237,21 @@ header .new-recipe:hover {
   font-size: 1.125rem;
 }
 
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recipe-card {
+  animation: fadeInUp 0.5s ease both;
+}
+
 /* Recipe Details */
 
 .recipe-details {
@@ -232,7 +260,7 @@ header .new-recipe:hover {
   margin: 2rem auto;
   background-color: #fff;
   border: 1px solid var(--border-color);
-  border-radius: 5px;
+  border-radius: 12px;
   box-shadow: var(--box-shadow);
 }
 
@@ -313,10 +341,15 @@ header .new-recipe:hover {
   line-height: 2rem;
 }
 
-.recipe-details .ingredient::before {
-  content: " - ";
-  padding-right: 0.75rem;
+.recipe-details .ingredient {
+    display: inline-block;
+    background-color: var(--accent-color-secondary);
+    padding: 0.35em 0.75em;
+    margin: 0.25rem;
+    border-radius: 20px;
+    font-size: 0.95rem;
 }
+
 .recipe-details .formatted-text {
   max-width: 100%;
   margin-top: 10px;
