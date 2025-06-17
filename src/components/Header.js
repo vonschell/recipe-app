@@ -15,8 +15,10 @@ const Header = ({ showRecipeForm, searchTerm, updateSearchTerm, displayAllRecipe
           <Search />
         </div>
       </div>
+      <div className="header-content">
       <h1>My Favorite Recipes</h1>
       <button className='new-recipe' onClick={showRecipeForm}>Add New Recipe</button>
+      </div>
     </header>
   );
 };
