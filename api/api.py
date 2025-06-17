@@ -22,7 +22,7 @@ class Recipe(db.Model):
     image_url = db.Column(
         db.String(500),
         nullable=True,
-        default="https://images.pexels.com/photos/9986228/pexels-photo-9986228.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        default="",
     )
     servings = db.Column(db.Integer, nullable=False)
 
