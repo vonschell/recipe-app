@@ -49,6 +49,7 @@ const NewRecipeForm = ({ newRecipe, hideRecipeForm, onUpdateForm, handleNewRecip
                         value={newRecipe.image_url}
                         onChange={(e) => onUpdateForm(e)}
                         required
+                        placeholder="Add an image URL"
                     />
 
                     <label>Servings</label>
