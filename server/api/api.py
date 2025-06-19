@@ -8,7 +8,8 @@ app = Flask(__name__, static_folder="build", static_url_path="")
 CORS(app)
 
 # Configure the database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///recipes.db'
+db_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'instance', 'recipes.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
 db = SQLAlchemy(app)
 
 # Define the Recipe model
@@ -33,8 +34,8 @@ class Recipe(db.Model):
         return f"Recipe(id={self.id}, title='{self.title}', description='{self.description}', servings={self.servings})"
 
 # Initialize the database
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+     db.create_all()
 #     db.session.commit()
 
 @app.route("/")
