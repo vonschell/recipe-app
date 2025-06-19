@@ -42,9 +42,9 @@ with app.app_context():
 def index():
     return send_from_directory(app.static_folder, "index.html")
 
-@app.route("/<path:path>")
-def static_files(path):
-    return send_from_directory(app.static_folder, path)
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory(app.static_folder, "index.html")
 
 @app.route('/api/recipes', methods=['GET'])
 def get_all_recipes():
